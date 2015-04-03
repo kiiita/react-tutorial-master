@@ -1,4 +1,3 @@
-// tutorial3.js
 var data = [
   {author: "Pete Hunt", text: "This is one comment"},
   {author: "Jordan Walke", text: "This is *another* comment"}
@@ -6,18 +5,20 @@ var data = [
 
 var converter = new Showdown.converter();
 var CommentBox = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
   render: function() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList data={this.props.data}/>
+        <CommentList data={this.state.data}/>
         <CommentForm />
       </div>
     );
   }
 });
 
-// tutorial2.js
 var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function (comment) {
@@ -62,7 +63,7 @@ var Comment = React.createClass({
 });
 
 React.render(
-  <CommentBox data={data} />,
+  <CommentBox url="comments.json" />,
   document.getElementById('content')
 );
 
